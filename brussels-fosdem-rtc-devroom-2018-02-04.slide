@@ -1,0 +1,65 @@
+The RTP bleed and what can we do?
+04 Feb 2018
+Tags: RTP, vulnerability, NAT, proxy,
+
+Peter Lemenkov
+Software Engineer, Red Hat
+lemenkov@gmail.com
+https://github.com/lemenkov
+
+* What is it and how it affects us?
+
+.image img/sipvicious-rtpbleed.png _ 700
+
+- [[https://www.rtpbleed.com][The RTP bleed ]] intially made public by [[https://twitter.com/sandrogauci][Sandro Gauci]] and [[https://github.com/kapejod][Klaus-Peter Junghanns]]
+- Allows almost anyone to redirect media streams.
+- Cannot be mitigated in 100% cases
+
+* Why it was introduced in the first place?
+
+- Lots of legacy from POTS era (poor security)
+- We have to deal with NAT somehow
+
+* RTP proxying
+
+.image img/rtpproxy.png
+
+- Most simple case - there are more (transcoding, etc).
+- RTP is visible to both callers
+- RTP proxy allocated ports and sends to calling parties
+- Who actually sends data to these ports? The same answer as in POTS.
+
+* Avoid RTP proxying with STUN?
+
+.image img/nat_types.png _ 800
+
+- No.
+
+* POTS RTP bleed
+
+.image img/crocodile.jpg _ 500
+
+* RTP structure
+
+.image img/rtp_struct.png
+
+- That's all we have.
+
+* SRTP structure
+
+.image img/srtp_struct.png
+
+- Extends RTP with authentication
+
+* What can we do to mitigate it using current architecture?
+
+- In short - we can't do much
+- Remembering last IP? Doesn't work with 4G networks
+- SSRC also could change although this looks to be rare
+- No signature of any kind
+- Even if possible to "sign" (SRTP), then what to do with legacy devices?
+
+* Will future Voice / Video over IP systems be affected?
+
+- IPv6
+- ***Encryption** (SRTP + ZRTP)
