@@ -20,6 +20,16 @@ https://github.com/lemenkov
 - Lots of legacy from POTS era (poor security)
 - We have to deal with NAT somehow
 
+* POTS RTP bleed
+
+.image img/crocodile.jpg _ 500
+
+* Avoid RTP proxying with STUN?
+
+.image img/nat_types.png _ 800
+
+- No.
+
 * RTP proxying
 
 .image img/rtpproxy.png
@@ -28,16 +38,6 @@ https://github.com/lemenkov
 - RTP is visible to both callers
 - RTP proxy allocated ports and sends to calling parties
 - Who actually sends data to these ports? The same answer as in POTS.
-
-* Avoid RTP proxying with STUN?
-
-.image img/nat_types.png _ 800
-
-- No.
-
-* POTS RTP bleed
-
-.image img/crocodile.jpg _ 500
 
 * RTP structure
 
