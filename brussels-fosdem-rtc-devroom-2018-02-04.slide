@@ -9,35 +9,36 @@ https://github.com/lemenkov
 
 * What is it and how it affects us?
 
-.image img/sipvicious-rtpbleed.png _ 700
+.image img/sipvicious-rtpbleed.png _ 400
 
 - [[https://www.rtpbleed.com][The RTP bleed ]] intially made public by [[https://twitter.com/sandrogauci][Sandro Gauci]] and [[https://github.com/kapejod][Klaus-Peter Junghanns]]
 - Allows almost anyone to redirect media streams.
 - Cannot be mitigated in 100% cases
 
-* Why it was introduced in the first place?
-
-- Lots of legacy from POTS era (poor security)
-- We have to deal with NAT somehow
-
 * POTS RTP bleed
 
 .image img/crocodile.jpg _ 500
+
+* Why it was introduced in the first place?
+
+- Lots of legacy with poor security
+- We have to deal with NAT somehow
+
+* RTP proxying
+
+.image img/rtpproxy.png
+
+- Multiple implementations
+- Most simple case - there are more (transcoding, etc).
+- RTP proxy is visible to both callers
+- RTP proxy allocateis ports and resends data to calling parties
+- Who actually sends data to these ports? The same question as in POTS.
 
 * Avoid RTP proxying with STUN?
 
 .image img/nat_types.png _ 800
 
 - No.
-
-* RTP proxying
-
-.image img/rtpproxy.png
-
-- Most simple case - there are more (transcoding, etc).
-- RTP is visible to both callers
-- RTP proxy allocated ports and sends to calling parties
-- Who actually sends data to these ports? The same answer as in POTS.
 
 * RTP structure
 
@@ -62,4 +63,4 @@ https://github.com/lemenkov
 * Will future Voice / Video over IP systems be affected?
 
 - IPv6
-- ***Encryption** (SRTP + ZRTP)
+- ***Encryption** (SRTP + MIKEY, ZRTP, SDES, DTLS-SRTP)
